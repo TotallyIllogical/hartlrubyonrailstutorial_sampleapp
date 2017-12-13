@@ -3,4 +3,5 @@ class ApplicationController < ActionController::Base
   def hello
     render html: "Hello! This is the app called Sample App from Michael Hartl Runy on Rails Tutorial"
   end
+  include SessionsHelper
 end
