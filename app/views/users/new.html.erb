@@ -2,7 +2,9 @@
 <h1>Sign up</h1>
 <div class="row">
   <div class="col-md-6 col-md-offset-3">
+    <% # app/controllers/users_controller.rb %>
     <%= form_for(@user,url: signup_path) do |f| %>
+    <% # app/views/shared/_error_messages.html.erb %>
       <%= render 'shared/error_messages' %>
       <%= f.label :name %>
       <%= f.text_field :name, placeholder: 'Firstname Lastname', class: 'form-contol' %>

@@ -1,5 +1,6 @@
 class StaticPagesController < ApplicationController
 
+  # Controllers needs to be defined in order for everything to work
   def home
   end
 

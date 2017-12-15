@@ -42,8 +42,8 @@ p {
   font-size: 1.1em;
   line-height: 1.7em;
 }
-img[alt='Kitten'] {
-  display: none;
+.kitten {
+  text-align: center;
 }
 
 /* Mixins, variables, etc */
@@ -80,6 +80,10 @@ footer {
     &:hover {
       color: #222;
     }
+  }
+  span {
+    float: left;
+    padding-right: 15px;
   }
   small {
     float: left;

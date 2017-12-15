@@ -1,10 +1,14 @@
+<% # app/views/users/new.html.erb %>
 <% if @user.errors.any? %>
   <div id="error_explanation">
     <div class="alert alert-danger">
+      <% # pluralize is a text helper that pluralizes the string if it needs to %>
       The form contains <%= pluralize(@user.errors.count, 'error') %>.
     </div>
     <ul>
+      <% # Each-loop %>
       <% @user.errors.full_messages.each do |msg| %>
+        <% # prings out the error message %>
         <li><%= msg %></li>
       <% end %>
     </ul>
