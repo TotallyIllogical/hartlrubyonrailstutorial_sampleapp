@@ -12,7 +12,6 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
   end
 
-  #
   def create
     # Redefined the @user, now with the info filled in the form
     @user = User.new(user_params)
@@ -29,6 +28,11 @@ class UsersController < ApplicationController
       # Render new page again (new template)
       render 'new'
     end
+  end
+
+  def edit
+    # Get the user
+    @user = User.find(params[:id])
   end
 
   # Question: Why is private flooting by itself? Why no ending?

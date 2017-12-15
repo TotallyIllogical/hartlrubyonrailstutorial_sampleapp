@@ -1,0 +1,18 @@
+<% # app/controllers/users_controller.rb %>
+<%= form_for(@user,url: signup_path) do |f| %>
+<% # app/views/shared/_error_messages.html.erb %>
+  <%= render 'shared/error_messages' %>
+  <%= f.label :name %>
+  <%= f.text_field :name, placeholder: 'Firstname Lastname', class: 'form-contol' %>
+
+  <%= f.label :email %>
+  <%= f.email_field :email, placeholder: 'example@mailprovider.com', class: 'form-contol' %>
+
+  <%= f.label :password %>
+  <%= f.password_field :password, placeholder: 'Must be at least 6 characters long', class: 'form-contol' %>
+
+  <%= f.label :password_confirmation, 'Confirmation', class: 'form-contol' %>
+  <%= f.password_field :password_confirmation, placeholder: 'Repeat the password', class: 'form-contol' %>
+
+  <%= f.submit 'Create my account', class: 'btn btn-primary' %>
+<% end %>

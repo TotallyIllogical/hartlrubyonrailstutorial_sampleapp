@@ -15,6 +15,7 @@ Rails.application.routes.draw do
   get '/contact', to: 'static_pages#contact'
   get '/users', to: 'users#index'
   get '/signup', to: 'users#new'
+  get '/settings', to: 'users#edit'
   get '/login', to: 'sessions#new'
 
   # Connects links to path after post
