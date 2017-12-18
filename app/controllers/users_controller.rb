@@ -1,5 +1,7 @@
 class UsersController < ApplicationController
 
+  before_action :logged_in_user, only: [:edit, :update]
+  before_action :correct_user, only: [:edit, :update]
   # app/views/users/new.html.erb
   def new
     # Defines @user to be used in new template
@@ -54,6 +56,23 @@ class UsersController < ApplicationController
     # Definges the parameters needed to create a user
     def user_params
       params.require(:user).permit(:name, :email, :password, :password_confirmation)
+    end
+
+    # Make sure user is logged in
+    def logged_in_user
+      # logged_in? -> app/helpers/sessions_helper.rb
+      # If not logged in
+      unless logged_in?
+        # Show message
+        flash[:danger] = 'Please log in'
+        # Rediredct to login page
+        redirect_to login_url
+      end
+    end
+
+    def correct_user
+      @user = User.find(params[:id])
+      redirect_to(root_url) unless current_user?(@user)
     end
 
 end

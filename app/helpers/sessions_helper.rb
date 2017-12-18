@@ -26,6 +26,10 @@ module SessionsHelper
     end
   end
 
+  def current_user?(user)
+    user == current_user
+  end
+
   def logged_in?
     # Checks so that current user is not empty
     !current_user.nil?
