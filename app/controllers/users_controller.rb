@@ -63,6 +63,7 @@ class UsersController < ApplicationController
       # logged_in? -> app/helpers/sessions_helper.rb
       # If not logged in
       unless logged_in?
+        store_location
         # Show message
         flash[:danger] = 'Please log in'
         # Rediredct to login page

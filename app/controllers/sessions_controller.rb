@@ -14,7 +14,7 @@ class SessionsController < ApplicationController
       # Remember(), forget() -> app/helpers/sessions_helper.rbm
       params[:session][:remember_me] == '1' ? remember(@user) : forget(@user)
       # Redirect to user page (show template)
-      redirect_to @user
+      redirect_back_or @user
     else
       # Show error message
       flash.now[:danger] = 'Invalid email/password combination'
