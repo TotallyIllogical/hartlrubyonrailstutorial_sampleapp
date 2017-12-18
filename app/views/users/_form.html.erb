@@ -1,7 +1,7 @@
 <% # app/controllers/users_controller.rb %>
-<%= form_for(@user,url: signup_path) do |f| %>
+<%= form_for(@user, url: yield(:form_url)) do |f| %>
 <% # app/views/shared/_error_messages.html.erb %>
-  <%= render 'shared/error_messages' %>
+  <%= render 'shared/error_messages', object: @user %>
   <%= f.label :name %>
   <%= f.text_field :name, placeholder: 'Firstname Lastname', class: 'form-contol' %>
 
@@ -14,5 +14,5 @@
   <%= f.label :password_confirmation, 'Confirmation', class: 'form-contol' %>
   <%= f.password_field :password_confirmation, placeholder: 'Repeat the password', class: 'form-contol' %>
 
-  <%= f.submit 'Create my account', class: 'btn btn-primary' %>
+  <%= f.submit yield(:button_text), class: 'btn btn-primary' %>
 <% end %>

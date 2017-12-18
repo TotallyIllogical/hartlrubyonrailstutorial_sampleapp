@@ -1,4 +1,4 @@
-# Sample App from Michael Hartl Runy on Rails Tutorial
+# Sample App from Michael Hartl Ruby on Rails Tutorial
 Fouth Editon
 
 This is the sample application for

@@ -19,7 +19,7 @@ class User < ApplicationRecord
   has_secure_password
 
   # Validates thar a password is set and that the length is longer then 6 characters
-  validates :password, presence: true, length: { minimum: 6 }
+  validates :password, presence: true, length: { minimum: 6 }, allow_nil: true
 
   def User.digest(string)
     # Sets to cost to BCrypt::Engine::MIN_COST if ActiveModel::SecurePassword.min_cost is true

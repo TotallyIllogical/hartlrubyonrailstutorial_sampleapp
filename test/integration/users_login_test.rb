@@ -1,6 +1,8 @@
 require 'test_helper'
 
 class UsersLoginTest < ActionDispatch::IntegrationTest  # Special function that automatically runs before every test
+
+  # Special function that automatically runs before every test
   def setup
     # :railsuser -> test/fixtures/users.yml
     @user = users(:railsuser)

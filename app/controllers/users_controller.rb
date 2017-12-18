@@ -35,6 +35,20 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
   end
 
+  def update
+    # Get the user
+    @user = User.find(params[:id])
+    # If user is updatable
+    if @user.update_attributes(user_params)
+      # Something
+      flash[:success] = "Your profile has been updated"
+      redirect_to @user
+    else
+      # Render the edit page again
+      render 'edit'
+    end
+  end
+
   # Question: Why is private flooting by itself? Why no ending?
   private
     # Definges the parameters needed to create a user
