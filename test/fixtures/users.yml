@@ -2,8 +2,8 @@
 
 
 jaffagoauld1:
-  name: Tess T User
-  email: example@railstutorial.org
+  name: Jaffa Goa'uld 1
+  email: jaff1@goauld.sym
   password_digest: <%= User.digest('password') %>
   admin: true
 
