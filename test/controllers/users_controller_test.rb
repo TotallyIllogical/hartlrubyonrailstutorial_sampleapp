@@ -31,7 +31,7 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to root_url
   end
 
-  test 'shoudl redirect to index when not logged in' do
+  test 'should redirect to index when not logged in' do
     get users_path
     assert_redirected_to login_url
   end
@@ -42,6 +42,29 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
     assert_not @user2.admin?
     patch user_path(@user2), params: { user: { password: '123456', password_confirmation: '123456', admin: true } }
     assert_not @user2.reload.admin?
+  end
+
+  test 'should redirect destroy when not logged in' do
+    assert_no_difference 'User.count' do
+      delete user_path(@user2)
+    end
+    assert_redirected_to login_url
+  end
+
+  test 'should redirect destroy when logged in user is not admin' do
+    log_in_as(@user2)
+    assert_no_difference 'User.count' do
+      delete user_path(@user1)
+    end
+    assert_redirected_to root_url
+  end
+
+  test 'admin should be able to destroy user' do
+    log_in_as(@user1)
+    assert_difference 'User.count', -1 do
+      delete user_path(@user2)
+    end
+    assert_redirected_to users_url
   end
 
 end
