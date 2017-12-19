@@ -1,0 +1,10 @@
+<% # @user -> app/controllers/users_controller.rb %>
+<% provide(:title, 'Registered Users') %>
+<h1>Registered Users</h1>
+<% #will_paginate -> build in function from gem with the same name %>
+<%= will_paginate %>
+<ul class="users">
+  <%= render @users %>
+</ul>
+<% #will_paginate -> build in function from gem with the same name %>
+<%= will_paginate %>

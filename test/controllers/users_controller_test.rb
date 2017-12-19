@@ -4,9 +4,9 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
 
   # Special function that automatically runs before every test
   def setup
-    # :railsuser -> test/fixtures/users.yml
-    @user1 = users(:railsuser1)
-    @user2 = users(:railsuser2)
+    # :jaffagoauld -> test/fixtures/users.yml
+    @user1 = users(:jaffagoauld1)
+    @user2 = users(:jaffagoauld2)
 
   end
   # Checks if new template can be found
@@ -29,6 +29,11 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
     patch user_path(@user1), params: { user: { name: @user1.name, email: @user1.email } }
     assert flash.empty?
     assert_redirected_to root_url
+  end
+
+  test 'shoudl redirect to index when not logged in' do
+    get users_path
+    assert_redirected_to login_url
   end
 
 end

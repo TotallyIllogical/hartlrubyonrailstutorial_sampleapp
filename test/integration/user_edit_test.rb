@@ -4,8 +4,8 @@ class UserEditTest < ActionDispatch::IntegrationTest
 
   # Special function that automatically runs before every test
   def setup
-    # :railsuser -> test/fixtures/users.yml
-    @user1 = users(:railsuser1)
+    # :jaffagoauld -> test/fixtures/users.yml
+    @user1 = users(:jaffagoauld1)
   end
 
   test 'unsuccessful edit' do

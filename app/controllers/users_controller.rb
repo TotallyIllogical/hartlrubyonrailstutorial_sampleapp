@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
 
-  before_action :logged_in_user, only: [:edit, :update]
+  before_action :logged_in_user, only: [:index, :edit, :update]
   before_action :correct_user, only: [:edit, :update]
   # app/views/users/new.html.erb
   def new
@@ -49,6 +49,10 @@ class UsersController < ApplicationController
       # Render the edit page again
       render 'edit'
     end
+  end
+
+  def index
+    @users = User.paginate(page: params[:page])
   end
 
   # Question: Why is private flooting by itself? Why no ending?

@@ -13,7 +13,11 @@ class SiteLayoutTest < ActionDispatch::IntegrationTest
     assert_select 'a[href=?]', about_path
     assert_select 'a[href=?]', contact_path
     assert_select 'a[href=?]', signup_path
-    assert_select 'a[href=?]', login_path
+    if is_logged_in?
+        assert_select 'a[href=?]', logout_path
+    else
+        assert_select 'a[href=?]', login_path
+    end
     # Fetches contact page
     get contact_path
     # Checks so contact page title

@@ -4,8 +4,8 @@ class SessionsHelperTest < ActionView::TestCase
 
   # Special function that automatically runs before every test
   def setup
-    # :railsuser -> test/fixtures/users.yml
-    @user1 = users(:railsuser1)
+    # :jaffagoauld -> test/fixtures/users.yml
+    @user1 = users(:jaffagoauld1)
     # app/helpers/sessions_helper.rbm
     remember(@user1)
   end

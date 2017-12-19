@@ -1,12 +1,34 @@
-# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+# Read about fixtures at http://api.rubyonrails.sym/classes/ActiveRecord/FixtureSet.html
 
 
-railsuser1:
-  name: Example User
-  email: example1@railstutorial.org
+jaffagoauld1:
+  name: Jaffa Goa'uld 1
+  email: jaffa1@goauld.sym
   password_digest: <%= User.digest('password') %>
 
-railsuser2:
-  name: Example User
-  email: example2@railstutorial.org
+jaffagoauld2:
+  name: Jaffa Goa'uld 2
+  email: jaffa2@goauld.sym
   password_digest: <%= User.digest('password') %>
+
+jaffagoauld3:
+  name: Jaffa Goa'uld 3
+  email: jaffa3@goauld.sym
+  password_digest: <%= User.digest('password') %>
+
+jaffagoauld4:
+  name: Jaffa Goa'uld 4
+  email: jaffa4@goauld.sym
+  password_digest: <%= User.digest('password') %>
+
+jaffagoauld5:
+  name: Jaffa Goa'uld 5
+  email: jaffa5@goauld.sym
+  password_digest: <%= User.digest('password') %>
+
+<% 30.times do |n| %>
+jaffagoauld<%= n + 5 %>:
+  name:  <%= "Jaffa Goa'uld #{n + 5}" %>
+  email: <%= "jaffa#{n + 5}@goauld.sym" %>
+  password_digest: <%= User.digest('password') %>
+<% end %>
