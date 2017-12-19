@@ -9,23 +9,33 @@ User.create!(name: "Tess T User",
              email: "example@railstutorial.org",
              password: "123456",
              password_confirmation: "123456",
+             activated: true,
+             activated_at: Time.zone.now,
              admin: true)
 User.create!(name: "Jack O'Neill",
              email: "jack@startgate.gov",
              password: "123456",
-             password_confirmation: "123456")
+             password_confirmation: "123456",
+             activated: true,
+             activated_at: Time.zone.now)
 User.create!(name: "Samantha Carter",
              email: "samantha@startgate.gov",
              password: "123456",
-             password_confirmation: "123456")
+             password_confirmation: "123456",
+             activated: true,
+             activated_at: Time.zone.now)
 User.create!(name: "Daniel Jackson",
              email: "daniel@startgate.gov",
              password: "123456",
-             password_confirmation: "123456")
+             password_confirmation: "123456",
+             activated: true,
+             activated_at: Time.zone.now)
 User.create!(name: "Teal'c Alien",
              email: "tealc@startgate.gov",
              password: "123456",
-             password_confirmation: "123456")
+             password_confirmation: "123456",
+             activated: true,
+             activated_at: Time.zone.now)
 94.times do |n|
   name  = Faker::Name.name
   email = "example-#{n+1}@railstutorial.org"
@@ -33,5 +43,7 @@ User.create!(name: "Teal'c Alien",
   User.create!(name: name,
                email: email,
                password: password,
-               password_confirmation: password)
+               password_confirmation: password,
+               activated: true,
+               activated_at: Time.zone.now)
 end

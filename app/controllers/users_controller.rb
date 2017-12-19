@@ -20,15 +20,15 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     # If user is savable (valid)
     if @user.save
-      # Login the user
-      log_in @user
-      # Show a flash message
-      flash[:success] = 'Welcome to the Sample App'
-      # Redirect to the user page (show template)
-      redirect_to @user
+      # Send activation mail
+      UserMailer.account_activation(@user).deliver_now
+      # Show message
+      flash[:info] = 'Please check your email to active your account'
+      # Go back to homepage
+      redirect_to root_url
     # If user is not savable (invalid)
     else
-      # Render new page again (new template)
+      # Render signup page again (new template)
       render 'new'
     end
   end

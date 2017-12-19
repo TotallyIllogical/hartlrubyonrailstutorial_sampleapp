@@ -1,10 +1,13 @@
 class User < ApplicationRecord
 
   # Makes a token available for storage outside the database
-  attr_accessor :remember_token
+  attr_accessor :remember_token, :activation_token
 
-  # Changes the inserted email to downcase
-  before_save { self.email = email.downcase }
+
+  # Changes the inserted email to downcase before save
+  before_save :downcase_email
+  # Create a activation digest before creating user model
+  before_create :create_activation_digest
 
   # Validates so that name is set, and that the length isn't over 50 characters long
   validates :name, presence: true, length: { maximum: 50 }
@@ -51,4 +54,17 @@ class User < ApplicationRecord
     # update_attribute is a built in function that bypasses the validation
     update_attribute(:remember_digest, nil)
   end
+
+  private
+
+    # Converts emails to lowercase
+    def downcase_email
+      email.downcase!
+    end
+
+    # Create and assign the activation token and digest
+    def create_activation_digest
+      self.activation_token = User.new_token
+      self.activation_digest = User.digest(activation_token)
+    end
 end

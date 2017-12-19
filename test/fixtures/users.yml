@@ -5,31 +5,43 @@ jaffagoauld1:
   name: Jaffa Goa'uld 1
   email: jaff1@goauld.sym
   password_digest: <%= User.digest('password') %>
+  activated: true
+  activated_at: <%= Time.zone.now %>
   admin: true
 
 jaffagoauld2:
   name: Jaffa Goa'uld 2
   email: jaffa2@goauld.sym
   password_digest: <%= User.digest('password') %>
+  activated: true
+  activated_at: <%= Time.zone.now %>
 
 jaffagoauld3:
   name: Jaffa Goa'uld 3
   email: jaffa3@goauld.sym
   password_digest: <%= User.digest('password') %>
+  activated: true
+  activated_at: <%= Time.zone.now %>
 
 jaffagoauld4:
   name: Jaffa Goa'uld 4
   email: jaffa4@goauld.sym
   password_digest: <%= User.digest('password') %>
+  activated: true
+  activated_at: <%= Time.zone.now %>
 
 jaffagoauld5:
   name: Jaffa Goa'uld 5
   email: jaffa5@goauld.sym
   password_digest: <%= User.digest('password') %>
+  activated: true
+  activated_at: <%= Time.zone.now %>
 
-<% 30.times do |n| %>
+<% 35.times do |n| %>
 jaffagoauld<%= n + 5 %>:
   name:  <%= "Jaffa Goa'uld #{n + 5}" %>
   email: <%= "jaffa#{n + 5}@goauld.sym" %>
   password_digest: <%= User.digest('password') %>
+  activated: true
+  activated_at: <%= Time.zone.now %>
 <% end %>

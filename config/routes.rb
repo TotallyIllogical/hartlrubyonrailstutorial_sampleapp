@@ -2,6 +2,8 @@ Rails.application.routes.draw do
 
   # Access the routing for users
   resources :users
+  # Access the routing for account activation
+  resources :account_activation, only: [:edit]
 
   # get 'sessions/new'
   # get 'users/new'
