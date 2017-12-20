@@ -5,7 +5,7 @@ module SessionsHelper
     session[:user_id] = user.id
   end
 
-  # Returns the current user if ther is one
+  # Returns the current user if there is one
   def current_user
     # Check if there is a user id in session and assigns it to the variable named user_id
     if (user_id = session[:user_id])
@@ -17,7 +17,7 @@ module SessionsHelper
       user = User.find_by(id: user_id)
       # Check if user exist, that it's valid and that the remember me is set
       # authenticated? -> app/models/user.rb
-      if user && user.authenticated?(cookies[:remember_token])
+      if user && user.authenticated?(:remember, cookies[:remember_token])
         # login user, see above
         log_in user
         # Sets user to current_user

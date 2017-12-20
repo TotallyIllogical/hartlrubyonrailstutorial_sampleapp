@@ -13,6 +13,7 @@ class UsersController < ApplicationController
   def show
     # Creates a user variable to be used in the show template
     @user = User.find(params[:id])
+    redirect_to root_url and return unless @user.activated?
   end
 
   def create
@@ -20,8 +21,8 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     # If user is savable (valid)
     if @user.save
-      # Send activation mail
-      UserMailer.account_activation(@user).deliver_now
+      # Send activation mail, send_activation_email -> app/models/user.rb
+      @user.send_activation_email
       # Show message
       flash[:info] = 'Please check your email to active your account'
       # Go back to homepage
@@ -53,7 +54,7 @@ class UsersController < ApplicationController
   end
 
   def index
-    @users = User.paginate(page: params[:page])
+    @users = User.where(activated: true).paginate(page: params[:page])
   end
 
   def destroy
