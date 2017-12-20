@@ -1,8 +1,7 @@
 class User < ApplicationRecord
 
   # Makes a token available for storage outside the database
-  attr_accessor :remember_token, :activation_token
-
+  attr_accessor :remember_token, :activation_token, :reset_token
 
   # Changes the inserted email to downcase before save
   before_save :downcase_email
@@ -67,6 +66,19 @@ class User < ApplicationRecord
   def send_activation_email
     # Send an activation mail
     UserMailer.account_activation(self).deliver_now
+  end
+
+  def create_reset_digest
+    self.reset_token = User.new_token
+    update_columns(reset_digest: User.digest(reset_token), reset_send_at: Time.zone.now)
+  end
+
+  def send_password_reset_email
+    UserMailer.password_reset(self).deliver_now
+  end
+
+  def password_reset_expired?
+    reset_send_at < 2.hours.ago
   end
 
   private

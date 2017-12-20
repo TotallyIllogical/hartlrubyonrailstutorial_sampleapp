@@ -3,7 +3,7 @@
 
 jaffagoauld1:
   name: Jaffa Goa'uld 1
-  email: jaff1@goauld.sym
+  email: jaffa1@goauld.sym
   password_digest: <%= User.digest('password') %>
   activated: true
   activated_at: <%= Time.zone.now %>
