@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   # Access the routing for account activation
   resources :account_activations, only: [:edit]
   # Access the routing for password reset
-  resources :password_reset, only:[:new, :create, :edit, :update]
+  resources :password_resets, only:[:new, :create, :edit, :update]
 
   # Sets home as root
   root 'static_pages#home'
