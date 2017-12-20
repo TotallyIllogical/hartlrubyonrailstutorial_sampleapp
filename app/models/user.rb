@@ -57,7 +57,10 @@ class User < ApplicationRecord
   end
 
   def activate
-    # Set activated to true and set activated_at to now
+    # Rewrote the function from having the two seperate queries bellow to just one
+    # update_attribute(:activated, true)
+    # update_attribute(:activated_at, Time.zone.now)
+    # Set activated to true and set activated_at to "now"
     update_columns(activated: true, activated_at: Time.zone.now)
   end
 
