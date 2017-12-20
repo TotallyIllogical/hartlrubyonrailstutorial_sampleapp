@@ -39,9 +39,11 @@ class PasswordResetsController < ApplicationController
       # Rerender edit page
       render 'edit'
     # Check if user password passes
-    elsif @user.update_attribute(user_params)
+    elsif @user.update_attributes(user_params)
       # Log in user
       log_in @user
+      # Reset reset_digest
+      @user.update_attribute(:reset_digest, nil)
       # Show message
       flash[:success] = "Your password has been reseted."
       # redirec to user profile
