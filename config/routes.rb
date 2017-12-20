@@ -1,16 +1,13 @@
 Rails.application.routes.draw do
 
-  get 'password_resets/new'
-
-  get 'password_resets/edit'
+  # Tips: type 'rails routes' in the console
 
   # Access the routing for users
   resources :users
   # Access the routing for account activation
   resources :account_activations, only: [:edit]
-
-  # get 'sessions/new'
-  # get 'users/new'
+  # Access the routing for password reset
+  resources :password_reset, only:[:new, :create, :edit, :update]
 
   # Sets home as root
   root 'static_pages#home'
