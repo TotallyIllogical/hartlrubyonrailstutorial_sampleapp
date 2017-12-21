@@ -5,6 +5,10 @@
     <a href="http://www.railstutorial.org/">Ruby on Rails Tutorial</a>
     sample application.
   </h2>
+  <% if !logged_in? %>
   <%= link_to "Sign up now!", signup_path, class: 'btn btn-l btn-primary' %>
+  <% else %>
+  <p>You are logged in as <%= current_user.name %></p>
+  <% end %>
 </div>
 <div class="kitten"><%= link_to image_tag('kitten.jpg', alt:'Kitten'), 'http://rubyonrails.org/' %></div>
