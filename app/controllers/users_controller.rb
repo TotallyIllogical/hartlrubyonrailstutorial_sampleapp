@@ -13,6 +13,8 @@ class UsersController < ApplicationController
   def show
     # Creates a user variable to be used in the show template
     @user = User.find(params[:id])
+    # paginate microposts
+    @microposts = @user.microposts.paginate(page: params[:page])
     redirect_to root_url and return unless @user.activated?
   end
 

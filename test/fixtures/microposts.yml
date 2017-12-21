@@ -3,39 +3,31 @@
 micropostone:
   content: "I feel great. Hope nothing bad happens to me."
   created_at: <%= 3.hours.ago %>
+  user: jaffagoauld1
 
 microposttwo:
   content: "Anyone else seeing the flying pyramid? I'm right bellow iiii"
   created_at: <%= 2.hours.ago %>
+  user: jaffagoauld1
 
 micropostthree:
   content: "I'm back!"
   created_at: <%= 1.hour.ago %>
+  user: jaffagoauld1
 
 micropostfour:
   content: "I'm not infected, promise"
   created_at: <%= 30.minutes.ago %>
+  user: jaffagoauld1
 
 micropostfive:
   content: "I like cats. We should worship them."
   created_at: <%= Time.zone.now %>
+  user: jaffagoauld1
 
-micropostsix:
-  content: "Onak sha sree Tau'ri."
-  created_at: <%= 22.minutes.ago %>
-
-micropostseven:
-  content: "Arik tre'ac te kek."
-  created_at: <%= 12.minutes.ago %>
-
-microposteight:
-  content: "Kalach shal tek."
-  created_at: <%= 2.minutes.ago %>
-
-micropostnine:
-  content: "Mak tal shree! Lo tak meta satak Oz!"
-  created_at: <%= 17.minutes.ago %>
-
-micropostten:
-  content: "Ya duru arik kek onac."
-  created_at: <%= 27.minutes.ago %>
+<% 40.times do |n| %>
+micropost_<%= n %>:
+  content: <%= Faker::Lorem.sentence(5) %>
+  created_at: <%= 42.days.ago %>
+  user: jaffagoauld2
+<% end %>
