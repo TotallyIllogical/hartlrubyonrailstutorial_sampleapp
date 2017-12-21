@@ -1,5 +1,9 @@
 class User < ApplicationRecord
 
+  # has_many -> Marks that user can have many microposts
+  # Depend destroy -> Destroy post when user is destroyed
+  has_many :microposts, dependent: :destroy
+
   # Makes a token available for storage outside the database
   attr_accessor :remember_token, :activation_token, :reset_token
 

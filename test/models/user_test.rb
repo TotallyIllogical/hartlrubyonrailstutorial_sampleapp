@@ -108,4 +108,12 @@ class UserTest < ActiveSupport::TestCase
     assert_not @user.authenticated?(:activation, '')
   end
 
+  test 'associated post should be removed when user is removed' do
+    @user.save
+    @user.microposts.create!(content: 'Hello world!')
+    assert_difference 'Micropost.count', -1 do
+      @user.destroy
+    end
+  end
+
 end
