@@ -42,9 +42,6 @@ p {
   font-size: 1.1em;
   line-height: 1.7em;
 }
-.kitten {
-  text-align: center;
-}
 
 /* Mixins, variables, etc */
 @mixin box_sizing {
@@ -245,4 +242,7 @@ span.picture {
   h3 {
     margin:0 0 10px;
   }
+}
+.kitten {
+  text-align: center;
 }

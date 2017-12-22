@@ -74,6 +74,7 @@ class UsersController < ApplicationController
 
     def correct_user
       # Find user by id
+      @user = User.find(params[:id])
       # Redirect home unless users match
       redirect_to(root_url) unless current_user?(@user)
     end

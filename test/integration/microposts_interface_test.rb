@@ -17,6 +17,8 @@ class MicropostsInterfaceTest < ActionDispatch::IntegrationTest
     get root_path
     # Check so that pagination shows up
     assert_select 'div.pagination'
+    # Check so that this type of input is found on the page
+    assert_select 'input[type="file"]'
     # Check so that the amount of micropost doesn't change when trying to post an empty post
     assert_no_difference 'Micropost.count' do
       post microposts_path, params: { micropost: { content: '' } }
@@ -25,10 +27,17 @@ class MicropostsInterfaceTest < ActionDispatch::IntegrationTest
     assert_select 'div#error_explanation'
     # Add string to variable
     content  = "This post really ties the page together"
+    # Add image to variable
     # Check so that the amount of micropost change when a correctly made post are made
     assert_difference 'Micropost.count', 1 do
       post microposts_path, params: { micropost: { content: content } }
     end
+    picture = fixture_file_upload('test/fixtures/rails.png', 'image/png')
+    # Check so that the amount of micropost change when a correctly made post with image are made
+    assert_difference 'Micropost.count', 1 do
+      post microposts_path, params: { micropost: { content: content, picture: picture } }
+    end
+    assert @simple_user.microposts.first.picture?
     # Check so that the user are redirected to home
     assert_redirected_to root_url
     # Follow the redirect
