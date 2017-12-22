@@ -72,25 +72,14 @@ class UsersController < ApplicationController
       params.require(:user).permit(:name, :email, :password, :password_confirmation)
     end
 
-    # Make sure user is logged in
-    def logged_in_user
-      # logged_in? -> app/helpers/sessions_helper.rb
-      # If not logged in
-      unless logged_in?
-        store_location
-        # Show message
-        flash[:danger] = 'Please log in'
-        # Rediredct to login page
-        redirect_to login_url
-      end
-    end
-
     def correct_user
-      @user = User.find(params[:id])
+      # Find user by id
+      # Redirect home unless users match
       redirect_to(root_url) unless current_user?(@user)
     end
 
     def admin_user
+      # Go to homepate unless current user is not admin
       redirect_to(root_url) unless current_user.admin?
     end
 

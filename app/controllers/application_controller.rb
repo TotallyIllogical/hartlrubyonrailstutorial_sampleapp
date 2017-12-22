@@ -9,4 +9,19 @@ class ApplicationController < ActionController::Base
   # Makes so that the sessions helper is included for all controllers
   include SessionsHelper
 
+  private
+
+    # Make sure user is logged in
+    def logged_in_user
+      # logged_in? -> app/helpers/sessions_helper.rb
+      # If not logged in
+      unless logged_in?
+        store_location
+        # Show message
+        flash[:danger] = 'Please log in'
+        # Rediredct to login page
+        redirect_to login_url
+      end
+    end
+
 end

@@ -8,6 +8,8 @@ Rails.application.routes.draw do
   resources :account_activations, only: [:edit]
   # Access the routing for password reset
   resources :password_resets, only:[:new, :create, :edit, :update]
+  # Access the routing for microposts
+  resources :microposts, only: [:create, :destroy]
 
   # Sets home as root
   root 'static_pages#home'

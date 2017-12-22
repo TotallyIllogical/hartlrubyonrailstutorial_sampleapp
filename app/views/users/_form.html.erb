@@ -1,7 +1,7 @@
 <% # app/controllers/users_controller.rb %>
 <%= form_for(@user, url: yield(:form_url)) do |f| %>
 <% # app/views/shared/_error_messages.html.erb %>
-  <%= render 'shared/error_messages', object: @user %>
+  <%= render 'shared/error_messages', object: f.object %>
   <%= f.label :name %>
   <%= f.text_field :name, placeholder: 'Firstname Lastname', class: 'form-contol' %>
 
