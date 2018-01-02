@@ -90,7 +90,7 @@ tealc.microposts.create!(content: "Indeed")
 
 users = User.all
 user = users.first
-following = users[2..50]
+following = users[2..5]
 followers = users[2..40]
 following.each { |followed| user.follow(followed) }
 followers.each { |follower| follower.follow(user) }
