@@ -10,6 +10,14 @@ Rails.application.routes.draw do
   resources :password_resets, only:[:new, :create, :edit, :update]
   # Access the routing for microposts
   resources :microposts, only: [:create, :destroy]
+  #
+  resources :users do
+    member do
+      get :following, :followers
+    end
+  end
+  #
+  resources :relationships, only: [:create, :destroy]
 
   # Sets home as root
   root 'static_pages#home'

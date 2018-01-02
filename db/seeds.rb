@@ -58,8 +58,8 @@ users.each do |user|
 end
 50.times do
   content = Faker::ChuckNorris.fact
-  if content.length > 140 
-   content[0..140]
+  if content.length > 139
+   content = content[0..139]
   end
   new_users.each { |user| user.microposts.create!(content: content)}
 end
@@ -87,3 +87,10 @@ tealc = User.find_by(id: 5)
 tealc.microposts.create!(content: "In my culture, I would be well within my rights to dismember you.")
 tealc.microposts.create!(content: "If you once again try to harm me or one of my companions, my patience with you will expire.")
 tealc.microposts.create!(content: "Indeed")
+
+users = User.all
+user = users.first
+following = users[2..50]
+followers = users[2..40]
+following.each { |followed| user.follow(followed) }
+followers.each { |follower| follower.follow(user) }

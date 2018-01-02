@@ -5,13 +5,13 @@ class UsersIndexTest < ActionDispatch::IntegrationTest
   # Special function that automatically runs before every test
   def setup
     # :jaffagoauld -> test/fixtures/users.yml
-    @admin_user = users(:jaffagoauld1)
-    @simple_user = users(:jaffagoauld2)
+    @admin = users(:jaffagoauld1)
+    @user = users(:jaffagoauld2)
   end
 
   test 'index include pagination' do
     # Log in as user
-    log_in_as(@simple_user)
+    log_in_as(@user)
     # Go to users index page
     get users_path
     # Check so that the correct template is used and that it can be loaded
@@ -26,7 +26,7 @@ class UsersIndexTest < ActionDispatch::IntegrationTest
 
   test 'index page shows pagination and delete links for admin users' do
     # Log in as admin user
-    log_in_as(@admin_user)
+    log_in_as(@admin)
     # Go to the users list
     get users_path
     # Check so that the correct template is loaded and are rendering correct
@@ -38,7 +38,7 @@ class UsersIndexTest < ActionDispatch::IntegrationTest
       # Check that there is a link to each users profile
       assert_select 'a[href=?]', user_path(user), text: user.name
       # If user is admin
-      unless user == @admin_user
+      unless user == @admin
         # Check so that delete links shows
         assert_select 'a[href=?]', user_path(user), text: 'delete'
       end
@@ -47,7 +47,7 @@ class UsersIndexTest < ActionDispatch::IntegrationTest
 
   test 'delete links should not show for non-admin users' do
     # Log in as a none-admin user
-    log_in_as(@simple_user)
+    log_in_as(@user)
     # Go to users list
     get users_path
     # Check so that the correct template is used and that it can be loaded

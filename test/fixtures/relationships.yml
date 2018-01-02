@@ -1,0 +1,15 @@
+one:
+  follower: jaffagoauld1
+  followed: jaffagoauld2
+
+two:
+  follower: jaffagoauld1
+  followed: jaffagoauld3
+
+three:
+  follower: jaffagoauld2
+  followed: jaffagoauld1
+
+four:
+  follower: jaffagoauld4
+  followed: jaffagoauld1

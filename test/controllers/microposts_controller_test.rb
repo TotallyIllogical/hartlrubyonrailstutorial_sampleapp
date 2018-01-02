@@ -5,8 +5,8 @@ class MicropostsControllerTest < ActionDispatch::IntegrationTest
   # Special function that automatically runs before every test
   def setup
     # :jaffagoauld -> test/fixtures/users.yml
-    @admin_user = users(:jaffagoauld1)
-    @simple_user = users(:jaffagoauld2)
+    @admin = users(:jaffagoauld1)
+    @user = users(:jaffagoauld2)
 
     @micropost = microposts(:micropostone)
     @micropost2 = microposts(:microposttwo)
@@ -31,7 +31,7 @@ class MicropostsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test 'should redirect destroy micropost for wrong user' do
-    log_in_as(@simple_user)
+    log_in_as(@user)
     micropost = microposts(:micropostone)
     assert_no_difference 'Micropost.count' do
       delete micropost_path(micropost)

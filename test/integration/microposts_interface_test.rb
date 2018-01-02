@@ -5,14 +5,14 @@ class MicropostsInterfaceTest < ActionDispatch::IntegrationTest
   # Special function that automatically runs before every test
   def setup
     # :jaffagoauld -> test/fixtures/users.yml
-    @admin_user = users(:jaffagoauld1)
-    @simple_user = users(:jaffagoauld2)
+    @admin = users(:jaffagoauld1)
+    @user = users(:jaffagoauld2)
     @nopost_user = users(:jaffagoauld3)
   end
 
   test 'micropost interface' do
     # Log in as user
-    log_in_as(@simple_user)
+    log_in_as(@user)
     #  Go to homepage
     get root_path
     # Check so that pagination shows up
@@ -37,7 +37,7 @@ class MicropostsInterfaceTest < ActionDispatch::IntegrationTest
     assert_difference 'Micropost.count', 1 do
       post microposts_path, params: { micropost: { content: content, picture: picture } }
     end
-    assert @simple_user.microposts.first.picture?
+    assert @user.microposts.first.picture?
     # Check so that the user are redirected to home
     assert_redirected_to root_url
     # Follow the redirect
@@ -47,24 +47,24 @@ class MicropostsInterfaceTest < ActionDispatch::IntegrationTest
     # Check so that the delete link shows
     assert_select 'a', text: 'Delete'
     # Get the first post from the first page
-    first_micropost = @simple_user.microposts.paginate(page: 1).first
+    first_micropost = @user.microposts.paginate(page: 1).first
     # Check so that the amount of posts are decreased by one
     assert_difference 'Micropost.count', -1 do
       delete micropost_path(first_micropost)
     end
     # Get another user
-    get users_path(@admin_user)
+    get users_path(@admin)
     # Check so that the second user doesn't see a delete link for the first users posts
     assert_select 'a', text: 'Delete', count: 0
   end
 
   test 'micropost sidebar count' do
     # Log in as user
-    log_in_as(@simple_user)
+    log_in_as(@user)
     # Go to homepage
     get root_path
     # Check so that this string shows up somewhere in the body-tag
-    assert_match "#{@simple_user.microposts.count} microposts", response.body
+    assert_match "#{@user.microposts.count} microposts", response.body
     # Log in as another user that has no posts
     log_in_as(@nopost_user)
     # Go to homepage

@@ -5,41 +5,44 @@ class UserTest < ActiveSupport::TestCase
   # Special function that automatically runs before every test
   def setup
     # Creates a example user to use in the tests
-    @user = User.new(name:'Example User', email:'user@example.com',
+    @clean = User.new(name:'Example User', email:'user@example.com',
       password: 'foobar', password_confirmation: 'foobar')
+    @admin = users(:jaffagoauld1)
+    @user = users(:jaffagoauld2)
+    @other = users(:jaffagoauld4)
   end
 
   test 'should be valid' do
     # Checks if the the example user is valid
-    assert @user.valid?
+    assert @clean.valid?
   end
 
   test 'name should be present' do
     # Change content of user.name to a blank string
-    @user.name = '  '
+    @clean.name = '  '
     # Checks so that the user is not valid
-    assert_not @user.valid?
+    assert_not @clean.valid?
   end
 
   test 'email should be present' do
     # Change content of user.email to a blank string
-    @user.email = '  '
+    @clean.email = '  '
     # Checks so that the user is not valid
-    assert_not @user.valid?
+    assert_not @clean.valid?
   end
 
   test 'name should not be too long' do
     # Change user.name to a 51 character long string
-    @user.name = 'a' * 51
+    @clean.name = 'a' * 51
     # Checks so that the user is not valid
-    assert_not @user.valid?
+    assert_not @clean.valid?
   end
 
   test 'email should not be too long' do
     # Change user.email to a 244 character long string
-    @user.email = 'a' * 244 +'@example.com'
+    @clean.email = 'a' * 244 +'@example.com'
     # Checks so that the user is not valid
-    assert_not @user.valid?
+    assert_not @clean.valid?
   end
 
   test 'email validation should accept valid addresses' do
@@ -48,9 +51,9 @@ class UserTest < ActiveSupport::TestCase
     # Loop the array
     valid_addresses.each do |valid_address|
       # Changes user.email to on of the addresses in array
-      @user.email = valid_address
+      @clean.email = valid_address
       # Checks so that the user is valid
-      assert @user.valid?,"#{valid_address.inspect} should be valid"
+      assert @clean.valid?,"#{valid_address.inspect} should be valid"
     end
   end
 
@@ -60,19 +63,19 @@ class UserTest < ActiveSupport::TestCase
     # Loop the array
     invalid_addresses.each do |invalid_address|
       # Changes user.email to on of the addresses in array
-      @user.email = invalid_address
+      @clean.email = invalid_address
       # Checks so that the user is not valid
-      assert_not @user.valid?,"#{invalid_address.inspect} should be invalid"
+      assert_not @clean.valid?,"#{invalid_address.inspect} should be invalid"
     end
   end
 
   test 'email address should be unique' do
     # Duplicates example user
-    duplicate_user = @user.dup
+    duplicate_user = @clean.dup
     # Changes the user email to uppercase
-    duplicate_user.email = @user.email.upcase
+    duplicate_user.email = @clean.email.upcase
     # Save user
-    @user.save
+    @clean.save
     # Checks so that the duplicate user is not valid
     assert_not duplicate_user.valid?
   end
@@ -81,38 +84,59 @@ class UserTest < ActiveSupport::TestCase
     # Create a mix-cases email
     mixed_case_email = "Foo@ExamPLe.Com"
     # Change use email to the mix-cases email
-    @user.email = mixed_case_email
+    @clean.email = mixed_case_email
     # Save user
-    @user.save
+    @clean.save
     # Checks so that the the email is lowercase
-    assert_equal mixed_case_email.downcase, @user.reload.email
+    assert_equal mixed_case_email.downcase, @clean.reload.email
   end
 
   test 'password should be present (nonblank)' do
     # Changes password and password confirmation to a 6 character (minimum) long blank string
-    @user.password = @user.password_confirmation = '  ' * 6
+    @clean.password = @clean.password_confirmation = '  ' * 6
     # Checks so that the user is not valid
-    assert_not @user.valid?
+    assert_not @clean.valid?
   end
 
   test 'password should have a minimum length' do
     # Changes password and password confirmation to a 5 character long string
-    @user.password = @user.password_confirmation = 'a' * 5
+    @clean.password = @clean.password_confirmation = 'a' * 5
     # Checks so that the user is not valid
-    assert_not @user.valid?
+    assert_not @clean.valid?
   end
 
   test 'authenticated? should return false for a user with nil digest' do
     # authenticated? -> app/models/user.rb
-    assert_not @user.authenticated?(:remember, '')
-    assert_not @user.authenticated?(:activation, '')
+    assert_not @clean.authenticated?(:remember, '')
+    assert_not @clean.authenticated?(:activation, '')
   end
 
   test 'associated post should be removed when user is removed' do
-    @user.save
-    @user.microposts.create!(content: 'Hello world!')
+    @clean.save
+    @clean.microposts.create!(content: 'Hello world!')
     assert_difference 'Micropost.count', -1 do
-      @user.destroy
+      @clean.destroy
+    end
+  end
+
+  test 'should follow and unfollow user' do
+    assert_not @admin.following?(@clean)
+    @admin.follow(@clean)
+    assert @admin.following?(@clean)
+    assert @clean.followers.include?(@admin)
+    @admin.unfollow(@clean)
+    assert_not @admin.following?(@clean)
+  end
+
+  test 'feed should have the right posts' do
+    @user.microposts.each do |post_following|
+      assert @admin.feed.include?(post_following)
+    end
+    @admin.microposts.each do |post_self|
+      assert @admin.feed.include?(post_self)
+    end
+    @other.microposts.each do |post_unfollowed|
+      assert_not @admin.feed.include?(post_unfollowed)
     end
   end
 

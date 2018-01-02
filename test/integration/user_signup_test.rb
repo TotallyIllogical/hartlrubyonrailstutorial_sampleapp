@@ -5,7 +5,7 @@ class UserSignupTest < ActionDispatch::IntegrationTest
   # Special function that automatically runs before every test
   def setup
     # :jaffagoauld -> test/fixtures/users.yml
-    @user1 = users(:jaffagoauld1)
+    @user = users(:jaffagoauld1)
     ActionMailer::Base.deliveries.clear
   end
 
