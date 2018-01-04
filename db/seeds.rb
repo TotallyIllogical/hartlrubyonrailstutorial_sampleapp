@@ -67,6 +67,7 @@ end
 admin = User.first
 admin.microposts.create!(content: "This is my first post")
 admin.microposts.create!(content: "Hello World!")
+admin.microposts.create!(content: "Kitten!", picture: "#{Rails.root}/app/assets/images/kitten.jpg")
 
 jack = User.find_by(id: 2)
 jack.microposts.create!(content: "Oh for crying out loud!")
