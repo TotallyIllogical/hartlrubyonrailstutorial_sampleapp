@@ -3,8 +3,6 @@
 
 guard :rspec, cmd: "spring rspec" do
   watch(%r{^spec/.+_spec\.rb$})
-  watch(%r{^lib/(.+)\.rb$})     { |m| "spec/lib/#{m[1]}_spec.rb" }
-  watch(%r{^lib/tasks/(.+)\.rake$})     { |m| "spec/lib/tasks/#{m[1]}_spec.rb" }
 
   # Rails example
   watch(%r{^app/(.+)\.rb$})                       { |m| "spec/#{m[1]}_spec.rb" }
@@ -21,11 +19,7 @@ guard :rspec, cmd: "spring rspec" do
   # controllers
   watch(%r{^app/controllers/(.+)_controller\.rb$}) do |m|
     match = m[1].split('/')
-    ["spec/features/#{match[-2]}", "spec/features/#{match[-1]}"].reject {|str| str == 'spec/features/'}
+    ["spec/controllers/#{match[-2]}", "spec/controllers/#{match[-1]}"].reject {|str| str == 'spec/controllers/'}
   end
 
-  # api request specs
-  watch(%r{^app/controllers/api/(.+)_controller\.rb$}) do |m|
-    ["spec/requests/api/#{m[1]}", "spec/requests/api/#{m[1]}_spec.rb"]
-  end
 end

@@ -1,15 +1,15 @@
 one:
-  follower: jaffagoauld1
-  followed: jaffagoauld2
+  follower: arthur
+  followed: ford
 
 two:
-  follower: jaffagoauld1
-  followed: jaffagoauld3
+  follower: arthur
+  followed: trillian
 
 three:
-  follower: jaffagoauld2
-  followed: jaffagoauld1
+  follower: ford
+  followed: arthur
 
 four:
-  follower: jaffagoauld4
-  followed: jaffagoauld1
+  follower: zaphod
+  followed: arthur

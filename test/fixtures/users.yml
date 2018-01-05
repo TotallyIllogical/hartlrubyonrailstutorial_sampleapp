@@ -1,25 +1,37 @@
 # Read about fixtures at http://api.rubyonrails.sym/classes/ActiveRecord/FixtureSet.html
+admin:
+  name: Michael Example
+  email: michael@example.com
+  password_digest: <%= User.digest('password') %>
+  admin: true
+  activated: true
+  activated_at: <%= Time.zone.now %>
 
-
-jaffagoauld1:
-  name: Jaffa Goa'uld 1
-  email: jaffa1@goauld.sym
+arthur:
+  name: Sterling Archer
+  email: duchess@example.gov
   password_digest: <%= User.digest('password') %>
   activated: true
   activated_at: <%= Time.zone.now %>
-  admin: true
 
-jaffagoauld2:
-  name: Jaffa Goa'uld 2
-  email: jaffa2@goauld.sym
+lana:
+  name: Lana Kane
+  email: hands@example.gov
+  password_digest: <%= User.digest('password') %>
+  activated: true
+  activated_at: <%= Time.zone.now %>
+
+malory:
+  name: Malory Archer
+  email: boss@example.gov
   password_digest: <%= User.digest('password') %>
   activated: true
   activated_at: <%= Time.zone.now %>
 
 <% 40.times do |n| %>
-jaffagoauld<%= n + 2 %>:
-  name:  <%= "Jaffa Goa'uld #{n + 2}" %>
-  email: <%= "jaffa#{n + 2}@goauld.sym" %>
+user_<%= n %>:
+  name:  <%= "User #{n}" %>
+  email: <%= "user-#{n + 1}@example.com" %>
   password_digest: <%= User.digest('password') %>
   activated: true
   activated_at: <%= Time.zone.now %>

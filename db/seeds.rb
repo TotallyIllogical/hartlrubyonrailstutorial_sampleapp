@@ -24,19 +24,26 @@ User.create!(name: "Tess Teir",
                activated_at: Time.zone.now)
 end
 
-# Sort user list by created at and take the first 6
+# Sort user list by created at and takes 5 user after the admin
 users = User.order(:created_at)
+new_users = []
+users.each do |user|
+  if user.id.between?(2,6)
+    new_users.push(user)
+  end
+end
 50.times do
   content = Faker::HitchhikersGuideToTheGalaxy.quote
   if content.length > 140
    content = content[0..139]
   end
-  users.each { |user| user.microposts.create!(content: content)}
+  new_users.each { |user| user.microposts.create!(content: content)}
 end
 
 admin = User.first
 admin.microposts.create!(content: "This is my first post")
-admin.microposts.create!(content: "Hello World!")
+admin.microposts.create!(content: Faker::HitchhikersGuideToTheGalaxy.marvin_quote)
+admin.microposts.create!(content: Faker::HitchhikersGuideToTheGalaxy.marvin_quote)
 
 users = User.all
 user = users.first
