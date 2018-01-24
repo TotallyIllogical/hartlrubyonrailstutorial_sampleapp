@@ -4,9 +4,9 @@ class FollowingTest < ActionDispatch::IntegrationTest
 
   # Special function that automatically runs before every test
   def setup
-    # :jaffagoauld -> test/fixtures/users.yml
-    @admin = users(:jaffagoauld1)
-    @user = users(:jaffagoauld4)
+    # :admin -> test/fixtures/users.yml
+    @admin = users(:admin)
+    @user = users(:arthur)
     log_in_as(@admin)
   end
 

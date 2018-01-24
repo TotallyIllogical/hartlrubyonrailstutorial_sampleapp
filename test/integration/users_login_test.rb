@@ -4,8 +4,8 @@ class UsersLoginTest < ActionDispatch::IntegrationTest  # Special function that 
 
   # Special function that automatically runs before every test
   def setup
-    # :jaffagoauld -> test/fixtures/users.yml
-    @user = users(:jaffagoauld1)
+    # :admin -> test/fixtures/users.yml
+    @user = users(:admin)
   end
 
   test 'login with invalid information' do

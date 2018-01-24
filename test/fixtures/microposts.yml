@@ -1,33 +1,33 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 micropostone:
-  content: "I feel great. Hope nothing bad happens to me."
+  content: <%= Faker::Lorem.sentence(5) %>
   created_at: <%= 3.hours.ago %>
-  user: jaffagoauld1
+  user: admin
 
 microposttwo:
-  content: "Anyone else seeing the flying pyramid? I'm right bellow iiii"
+  content: <%= Faker::Lorem.sentence(5) %>
   created_at: <%= 2.hours.ago %>
-  user: jaffagoauld1
+  user: admin
 
 micropostthree:
-  content: "I'm back!"
+  content: <%= Faker::Lorem.sentence(5) %>
   created_at: <%= 1.hour.ago %>
-  user: jaffagoauld1
+  user: admin
 
 micropostfour:
-  content: "I'm not infected, promise"
+  content: <%= Faker::Lorem.sentence(5) %>
   created_at: <%= 30.minutes.ago %>
-  user: jaffagoauld1
+  user: admin
 
 micropostfive:
-  content: "I like cats. We should worship them."
+  content: <%= Faker::Lorem.sentence(5) %>
   created_at: <%= Time.zone.now %>
-  user: jaffagoauld1
+  user: admin
 
 <% 40.times do |n| %>
 micropost_<%= n %>:
   content: <%= Faker::Lorem.sentence(5) %>
   created_at: <%= 42.days.ago %>
-  user: jaffagoauld2
+  user: arthur
 <% end %>

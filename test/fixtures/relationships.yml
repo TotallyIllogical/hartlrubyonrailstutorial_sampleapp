@@ -1,15 +1,15 @@
 one:
-  follower: arthur
-  followed: ford
+  follower: admin
+  followed: arthur
 
 two:
-  follower: arthur
-  followed: trillian
+  follower: admin
+  followed: ford
 
 three:
-  follower: ford
-  followed: arthur
+  follower: arthur
+  followed: admin
 
 four:
-  follower: zaphod
-  followed: arthur
+  follower: tricia
+  followed: admin

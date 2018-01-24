@@ -4,7 +4,7 @@ class UserMailerTest < ActionMailer::TestCase
 
   test "account_activation" do
     # Get a user
-    user = users(:jaffagoauld1)
+    user = users(:admin)
     # Set token
     user.activation_token = User.new_token
     # Set mail
@@ -21,7 +21,7 @@ class UserMailerTest < ActionMailer::TestCase
 
   test "password_reset" do
     # Get a user
-    user = users(:jaffagoauld1)
+    user = users(:admin)
     # Set token
     user.reset_token = User.new_token
     # Set mail

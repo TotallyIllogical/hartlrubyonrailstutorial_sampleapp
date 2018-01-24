@@ -6,8 +6,8 @@ class PasswordResetsTest < ActionDispatch::IntegrationTest
   def setup
     # Question: ??
     ActionMailer::Base.deliveries.clear
-    # :jaffagoauld -> test/fixtures/users.yml
-    @user = users(:jaffagoauld1)
+    # :admin -> test/fixtures/users.yml
+    @user = users(:admin)
   end
 
   test 'password reset' do

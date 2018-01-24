@@ -1,29 +1,29 @@
 # Read about fixtures at http://api.rubyonrails.sym/classes/ActiveRecord/FixtureSet.html
 admin:
-  name: Michael Example
-  email: michael@example.com
+  name: Admin User
+  email: admin@user.com
   password_digest: <%= User.digest('password') %>
   admin: true
   activated: true
   activated_at: <%= Time.zone.now %>
 
 arthur:
-  name: Sterling Archer
-  email: duchess@example.gov
+  name: Arthur Dent
+  email: arthurdent@universe.end
   password_digest: <%= User.digest('password') %>
   activated: true
   activated_at: <%= Time.zone.now %>
 
-lana:
-  name: Lana Kane
-  email: hands@example.gov
+ford:
+  name: Ford Prefect
+  email: fordprefect@universe.end
   password_digest: <%= User.digest('password') %>
   activated: true
   activated_at: <%= Time.zone.now %>
 
-malory:
-  name: Malory Archer
-  email: boss@example.gov
+tricia:
+  name: Tricia McMillan
+  email: triciamcmillan@universe.end
   password_digest: <%= User.digest('password') %>
   activated: true
   activated_at: <%= Time.zone.now %>

@@ -4,9 +4,9 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
 
   # Special function that automatically runs before every test
   def setup
-    # :jaffagoauld -> test/fixtures/users.yml
-    @admin = users(:jaffagoauld1)
-    @user = users(:jaffagoauld2)
+    # :admin -> test/fixtures/users.yml
+    @admin = users(:admin)
+    @user = users(:arthur)
 
   end
   # Checks if new template can be found
